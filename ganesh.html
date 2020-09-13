@@ -102,13 +102,18 @@ body {
         $("#abhang").append("<div class=\"ovi\"> <p>" + data.data.abhang[i] + "</p></div>");
       }
       $('.cycle-slideshow').cycle('reinit'); 
-      // $('.cycle-slideshow').cycle({
-      //   slides: "> div",
-      //   timeout: 0,
-      //   swipe: true,
-      //   fx:"scrollHorz" 
-      // }); 
-      // console.log(data);
+      
+      $('#jnan').on('cycle-after', function(event, optionHash, outgoingSlideEl, incomingSlideEl, forwardFlag) {
+        $('#abhang.cycle-slideshow').cycle('goto', optionHash.nextSlide);
+        // console.log(optionHash.currSlide, optionHash.nextSlide);
+        // console.log(forwardFlag);
+      });
+
+      $('#abhang').on('cycle-after', function(event, optionHash, outgoingSlideEl, incomingSlideEl, forwardFlag) {
+        $('#jnan.cycle-slideshow').cycle('goto', optionHash.nextSlide);
+        // console.log(optionHash.currSlide, optionHash.nextSlide);
+      });
+
     });
   });
 </script>
