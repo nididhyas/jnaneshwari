@@ -96,7 +96,7 @@ body {
 <script>
   $(document).ready(function() {
     var data;
-    $.getJSON("data.json").success(function(data, status, xhr) {
+    $.getJSON("https://nididhyas.github.io/jnaneshwari/data.json").success(function(data, status, xhr) {
       for (var i =0;  i < data.data.abhang.length; i++) {
         $("#jnan").append("<div class=\"ovi\"> <p>" + data.data.jnaneshwari[i] + "</p></div>");
         $("#abhang").append("<div class=\"ovi\"> <p>" + data.data.abhang[i] + "</p></div>");
