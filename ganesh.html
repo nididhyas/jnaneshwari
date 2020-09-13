@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+
+<style>
+body {
+  display: flex;
+  color: white;
+  margin:0px;
+  overflow: hidden;
+}
+
+
+@media (orientation: landscape) {
+  body {
+    flex-direction: row;
+    display: flex;
+  }
+
+  .split {
+    height: 100vh;
+    width: 50vw;
+  }
+} 
+
+@media (orientation: portrait) {
+  body {
+    flex-direction: column;
+  }
+  .split {
+    display: flex;
+    height: 50vh;
+    width: 100vw;
+  }
+}
+
+.split   {
+  /* padding: 2em; */
+  display: flex;
+  color: #ffffff;
+  background: #eeeeee;
+  align-items: center;
+  justify-content: center;
+}
+
+.left {
+  display: flex;
+  background-color: #111;
+}
+
+.right {
+  display: flex;
+  background-color: red;
+}
+
+.ovi {
+  display:flex;
+  padding:10px;
+  align-items: center;
+  justify-content: center;
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="split left">
+    <div id="jnan" class="cycle-slideshow" 
+        data-cycle-fx="fade" 
+        data-cycle-swipe=true
+        data-cycle-timeout="0"
+        data-cycle-slides="> div"
+        >
+    </div>
+</div>
+
+<div class="split right">
+    <div  id="abhang" class="cycle-slideshow" 
+        data-cycle-fx="fade" 
+        data-cycle-swipe=true
+        data-cycle-timeout="0"
+        data-cycle-slides="> div"
+        >
+    </div>
+</div>
+
+<!-- include jQuery -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<!-- include cycle2 -->
+<script src="http://malsup.github.io/min/jquery.cycle2.min.js"></script>
+<!-- include swipe plugin -->
+<script src="http://malsup.github.io/min/jquery.cycle2.swipe.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    var data;
+    $.getJSON("data.json").success(function(data, status, xhr) {
+      for (var i =0;  i < data.data.abhang.length; i++) {
+        $("#jnan").append("<div class=\"ovi\"> <p>" + data.data.jnaneshwari[i] + "</p></div>");
+        $("#abhang").append("<div class=\"ovi\"> <p>" + data.data.abhang[i] + "</p></div>");
+      }
+      $('.cycle-slideshow').cycle('reinit'); 
+      // $('.cycle-slideshow').cycle({
+      //   slides: "> div",
+      //   timeout: 0,
+      //   swipe: true,
+      //   fx:"scrollHorz" 
+      // }); 
+      // console.log(data);
+    });
+  });
+</script>
+
+</body>
+</html> 
